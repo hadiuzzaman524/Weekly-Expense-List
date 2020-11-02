@@ -11,18 +11,26 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int index = 0;
-  int ansIndex=1;
+  int ansIndex = 1;
+
+  var score = 0;
 
   var model = [
-    {'question': 'What is your favorite color?'},
+    {
+      'question': ['What is your favorite color?', 'blue']
+    },
     {
       'answer': ['black', 'blue', 'green', 'yellow']
     },
-    {'question': 'What is your favorite animal?'},
+    {
+      'question': ['What is your favorite animal?', 'cow']
+    },
     {
       'answer': ['cow', 'dog', 'cat', 'hourse']
     },
-    {'question': 'What is your favorite flower?'},
+    {
+      'question': ['What is your favorite flower?', 'rose']
+    },
     {
       'answer': ['rose', 'lotus', 'shimul', 'sewli']
     },
@@ -41,28 +49,38 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               children: [
                 Question(
-                  question: model[index]['question'],
+                  question: model[index]['question'][0],
                 ),
-                ...(model[ansIndex]['answer'] as List<String>).map((e) {
-                  return AnswerButton(
-                    answer: e,
-                    onPress: () {
-                      setState(() {
-                        if (model.length-2 > ansIndex) {
-                          index+=2;
-                          print(index);
-                          ansIndex+=2;
-                          print(ansIndex);
-                          print(model.length);
+                ...(model[ansIndex]['answer']).map(
+                  (e) {
+                    return AnswerButton(
+                      answer: e,
+                      onPress: () {
+                        var x;
+                        setState(() {
+                          x = model[index]['question'][1];
+                          if (model.length - 2 > ansIndex) {
+                            index += 2;
+
+                            ansIndex += 2;
+                          } else {}
+                        });
+
+                        if (x == e) {
+                          score += 10;
                         }
-                        else{
-                          print('call');
-                        }
-                      });
-                      print(e);
-                    },
-                  );
-                }),
+                      },
+                    );
+                  },
+                ),
+                Text(
+                  'Score: ${score}',
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.black,
+                  ),
+                ),
               ],
             ),
           ),

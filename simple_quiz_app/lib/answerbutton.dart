@@ -4,6 +4,7 @@ class AnswerButton extends StatelessWidget {
   final answer;
   final Function onPress;
 
+
   AnswerButton({this.answer, this.onPress});
 
   @override
@@ -13,7 +14,7 @@ class AnswerButton extends StatelessWidget {
       width: double.infinity,
       child: RaisedButton(
         onPressed: onPress,
-        color: Colors.pink,
+        color:Colors.red,
         child: Text(
           answer,
           style: TextStyle(
