@@ -18,14 +18,15 @@ class _MyAppState extends State<MyApp> {
   String amount;*/
   ListItem itemAdd = ListItem();
 
-  addItem(String title, String id, double price, DateTime dateTime) {
-    var newItem =
-        Transatcions(id: id, title: title, price: price, dateTime: dateTime);
-    transactionList.add(newItem);
-    print(title);
-    print(price);
-
-    print(transactionList.length);
+  addItem(String x, double y) {
+    var newItem = Transatcions(
+        id: DateTime.now().toString(),
+        title: x,
+        price: y,
+        dateTime: DateTime.now());
+    setState(() {
+      transactionList.add(newItem);
+    });
   }
 
   List<Transatcions> transactionList = [
@@ -81,17 +82,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 Card(
                   child: BottomSheetStyle(
-                    addItem: (title,amount) {
-                   /*   setState(() {
-                        addItem(title, DateTime.now().toString(),
-                            double.parse(amount), DateTime.now());
-                      });*/
-                      // print(ListItem().transactionList.length);
-                      print('add called');
-                      print(title);
-                      print(amount);
-
-                    },
+                    addItem: addItem,
                   ),
                 ),
                 Container(
@@ -122,8 +113,9 @@ class BottomSheetStyle extends StatelessWidget {
   final Function addItem;
 
   BottomSheetStyle({this.addItem});
+
   String title;
-  var amount;
+  double amount;
 
   @override
   Widget build(BuildContext context) {
@@ -156,14 +148,14 @@ class BottomSheetStyle extends StatelessWidget {
                 fontSize: 17,
               ),
               onChanged: (value) {
-                amount = value;
+                amount = double.parse(value);
               }),
           SizedBox(
             height: 10.0,
           ),
           RaisedButton(
-            onPressed:(){
-              addItem({title,amount});
+            onPressed: () {
+              addItem(title, amount);
             },
             child: Text(
               'Add Item',
