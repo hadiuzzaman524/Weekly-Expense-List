@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import './widgets/cart_element.dart';
 import 'listitem.dart';
 import './models/transactions.dart';
-import 'package:date_time_format/date_time_format.dart';
+
+import 'bottomsheet.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,14 +17,17 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 /*  String title;
   String amount;*/
-  ListItem itemAdd = ListItem();
+  //ListItem itemAdd = ListItem();
 
   addItem(String x, double y) {
     var newItem = Transatcions(
         id: DateTime.now().toString(),
         title: x,
-        price: y,
+        price: y.toInt(),
         dateTime: DateTime.now());
+    if (x.isEmpty || y < 1) {
+      return;
+    }
     setState(() {
       transactionList.add(newItem);
     });
@@ -44,6 +48,14 @@ class _MyAppState extends State<MyApp> {
     ),
   ];
 
+  showModalSheet(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (btx) {
+          return BottomSheetStyle(addItem: addItem);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -58,10 +70,7 @@ class _MyAppState extends State<MyApp> {
           floatingActionButton: Builder(
             builder: (context) => FloatingActionButton(
               backgroundColor: Colors.cyan,
-              onPressed: () {
-                showModalBottomSheet(
-                    context: context, builder: (context) => Container());
-              },
+              onPressed: () => showModalSheet(context),
               child: Icon(
                 Icons.add,
                 color: Colors.white,
@@ -80,94 +89,11 @@ class _MyAppState extends State<MyApp> {
                   color: Colors.green,
                   child: Text('hello world'),
                 ),
-                Card(
-                  child: BottomSheetStyle(
-                    addItem: addItem,
-                  ),
-                ),
-                Container(
-                  height: 300.0,
-                  child: ListView.builder(
-                    itemBuilder: (context, index) {
-                      var list = transactionList[index];
-                      return CartElements(
-                        id: list.id,
-                        title: list.title,
-                        price: list.price,
-                        date: list.dateTime.format(DateTimeFormats.american),
-                      );
-                    },
-                    itemCount: transactionList.length,
-                  ),
-                ),
+                ListViewItem(transactionList: transactionList),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class BottomSheetStyle extends StatelessWidget {
-  final Function addItem;
-
-  BottomSheetStyle({this.addItem});
-
-  String title;
-  double amount;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Color(0xffededed),
-      padding: EdgeInsets.all(15.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          TextField(
-              decoration: InputDecoration(
-                hintText: 'Title',
-              ),
-              keyboardType: TextInputType.name,
-              style: TextStyle(
-                fontSize: 17,
-              ),
-              onChanged: (value) {
-                title = value;
-              }),
-          SizedBox(
-            height: 5.0,
-          ),
-          TextField(
-              decoration: InputDecoration(
-                hintText: 'amount',
-              ),
-              keyboardType: TextInputType.number,
-              style: TextStyle(
-                fontSize: 17,
-              ),
-              onChanged: (value) {
-                amount = double.parse(value);
-              }),
-          SizedBox(
-            height: 10.0,
-          ),
-          RaisedButton(
-            onPressed: () {
-              addItem(title, amount);
-            },
-            child: Text(
-              'Add Item',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 17,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-            color: Colors.cyan,
-          ),
-        ],
       ),
     );
   }
