@@ -34,18 +34,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   List<Transatcions> transactionList = [
-    Transatcions(
-      id: DateTime.now().toString(),
-      title: 'Buy a Pant',
-      price: 400,
-      dateTime: DateTime.now(),
-    ),
-    Transatcions(
-      id: DateTime.now().toString(),
-      title: 'Buy a Shart',
-      price: 400,
-      dateTime: DateTime.now(),
-    ),
   ];
 
   showModalSheet(BuildContext ctx) {
