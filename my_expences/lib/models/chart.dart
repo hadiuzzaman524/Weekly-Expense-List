@@ -32,6 +32,7 @@ class WeekChart extends StatelessWidget {
     double total = 0;
     for (var i in recentList) {
       total += i['amount'];
+      print((i['amount'] as double) / total);
     }
     return total;
   }
@@ -51,7 +52,9 @@ class WeekChart extends StatelessWidget {
               return ChartItem(
                 amount: x.toStringAsFixed(0),
                 name: e['day'].toString(),
-                percentage: e['amount'] == 0 ? 0 : percentang / e['amount'],
+                percentage: e['amount'] == 0
+                    ? 0
+                    : (((e['amount'] as double) / percentang) * 100),
               );
             }),
           ],

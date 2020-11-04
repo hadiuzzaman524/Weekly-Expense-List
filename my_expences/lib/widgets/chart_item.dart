@@ -10,10 +10,12 @@ class ChartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    //print(percentage);
     return Column(
       children: [
         Text(
-          amount.toString(),
+          '${amount.toString()}৳',
           style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.bold,
@@ -27,16 +29,16 @@ class ChartItem extends StatelessWidget {
           width: 15,
           decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: Colors.purpleAccent, width: 1),
+            border: Border.all(color: Colors.redAccent, width: 1),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Stack(
             alignment: AlignmentDirectional.bottomEnd,
             children: [
               Container(
-                height: percentage == 0 ? 0 : percentage * 100,
+                height: percentage == 0 ? 0 : percentage,
                 decoration: BoxDecoration(
-                  color: Colors.redAccent,
+                  color: Colors.cyan,
                   borderRadius: BorderRadius.circular(10),
                 ),
               )

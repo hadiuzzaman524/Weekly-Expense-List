@@ -16,13 +16,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  addItem(String x, double y) {
+  addItem(String x, double y, DateTime newDate) {
+    if (y == null) {
+      return;
+    }
     var newItem = Transatcions(
         id: DateTime.now().toString(),
         title: x,
         price: y.toInt(),
-        dateTime: DateTime.now());
-    if (x.isEmpty || y < 1) {
+        dateTime: newDate);
+    if (x.isEmpty || y < 1 || newDate == null) {
       return;
     }
     setState(() {
@@ -63,7 +66,7 @@ class _MyAppState extends State<MyApp> {
       here element.dateTime is previous date which store in transactionList then
       after this days current days subtract for get difference of 7
        */
-     return element.dateTime.isAfter(
+      return element.dateTime.isAfter(
         DateTime.now().subtract(
           Duration(days: 7),
         ),
@@ -71,9 +74,19 @@ class _MyAppState extends State<MyApp> {
     }).toList();
   }
 
+  /*
+  retrive callback for removing list item
+   */
+  removeItem(String id) {
+    setState(() {
+      transactionList.removeWhere((element) {
+        return element.id == id;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       theme: ThemeData(
         appBarTheme: AppBarTheme.of(context).copyWith(
@@ -104,7 +117,11 @@ class _MyAppState extends State<MyApp> {
                 WeekChart(
                   resentTransactions: recentTransactionList,
                 ),
-                ListViewItem(transactionList: transactionList),
+
+                ListViewItem(
+                  transactionList: transactionList,
+                  removeItem: removeItem,
+                ),
               ],
             ),
           ),

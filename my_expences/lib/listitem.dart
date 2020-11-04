@@ -4,16 +4,20 @@ import './widgets/cart_element.dart';
 import 'package:intl/intl.dart';
 
 class ListViewItem extends StatelessWidget {
+
+  final Function removeItem;
   ListViewItem({
     @required this.transactionList,
+    @required this.removeItem,
   });
 
   final List<Transatcions> transactionList;
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
+      height: 500,
       child: ListView.builder(
         itemBuilder: (context, index) {
           var list = transactionList[index];
@@ -22,6 +26,7 @@ class ListViewItem extends StatelessWidget {
             title: list.title,
             price: list.price,
             date: list.dateTime,
+            findId: removeItem,
           );
         },
         itemCount: transactionList.length,
