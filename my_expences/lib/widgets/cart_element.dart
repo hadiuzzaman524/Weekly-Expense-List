@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 class CartElements extends StatelessWidget {
   final price;
   final title;
@@ -45,7 +45,7 @@ class CartElements extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
-                Text(date.toString()),
+                Text(DateFormat.yMMMd().format(date).toString()),
               ],
             )
           ],

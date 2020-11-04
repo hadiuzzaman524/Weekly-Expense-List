@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './models/transactions.dart';
 import './widgets/cart_element.dart';
-import 'package:date_time_format/date_time_format.dart';
+import 'package:intl/intl.dart';
 
 class ListViewItem extends StatelessWidget {
   ListViewItem({
@@ -21,7 +21,7 @@ class ListViewItem extends StatelessWidget {
             id: list.id,
             title: list.title,
             price: list.price,
-            date: list.dateTime.format(DateTimeFormats.american),
+            date: list.dateTime,
           );
         },
         itemCount: transactionList.length,
