@@ -4,7 +4,7 @@ In this project i can build weekly expense app with Maximum Charades Flutter Cou
 
 # ScreenShoot 1: 
 
-![first](https://github.com/hadiuzzaman524/Weekly-Expense-List/blob/main/Screenshot_1604498370.png)
+![first](https://github.com/hadiuzzaman524/Weekly-Expense-List/blob/main/Screenshot_1604501230.png)
 
 # ScreenShoot 2: 
 
