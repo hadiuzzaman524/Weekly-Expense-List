@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_expences/models/chart.dart';
 import './widgets/cart_element.dart';
 import 'listitem.dart';
 import './models/transactions.dart';
@@ -15,10 +16,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-/*  String title;
-  String amount;*/
-  //ListItem itemAdd = ListItem();
-
   addItem(String x, double y) {
     var newItem = Transatcions(
         id: DateTime.now().toString(),
@@ -85,9 +82,8 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Card(
-                  color: Colors.green,
-                  child: Text('hello world'),
+                WeekChart(
+                  resentTransactions: transactionList,
                 ),
                 ListViewItem(transactionList: transactionList),
               ],
