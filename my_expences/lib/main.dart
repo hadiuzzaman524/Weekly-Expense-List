@@ -53,8 +53,27 @@ class _MyAppState extends State<MyApp> {
         });
   }
 
+  /*
+  make a list for last 7 days and passing it to Chart widget for building a chart
+  for 7 days expense
+   */
+  List<Transatcions> get recentTransactionList {
+    return transactionList.where((element) {
+      /*
+      here element.dateTime is previous date which store in transactionList then
+      after this days current days subtract for get difference of 7
+       */
+     return element.dateTime.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       theme: ThemeData(
         appBarTheme: AppBarTheme.of(context).copyWith(
@@ -83,7 +102,7 @@ class _MyAppState extends State<MyApp> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 WeekChart(
-                  resentTransactions: transactionList,
+                  resentTransactions: recentTransactionList,
                 ),
                 ListViewItem(transactionList: transactionList),
               ],
