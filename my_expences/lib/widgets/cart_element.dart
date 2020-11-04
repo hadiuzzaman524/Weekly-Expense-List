@@ -19,7 +19,7 @@ class CartElements extends StatelessWidget {
               padding: EdgeInsets.all(15.0),
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.grey,
+                  color: Colors.purpleAccent,
                   width: 3.0,
                 ),
               ),
@@ -27,12 +27,13 @@ class CartElements extends StatelessWidget {
                 price.toString(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize:17,
+                  color: Colors.purpleAccent,
                 ),
               ),
             ),
             SizedBox(
-              width: 10.0,
+              width: 20.0,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,8 +42,7 @@ class CartElements extends StatelessWidget {
                   title.toString(),
                   style: TextStyle(
                     fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Colors.purpleAccent,
                   ),
                 ),
                 Text(DateFormat.yMMMd().format(date).toString()),
