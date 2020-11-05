@@ -43,7 +43,6 @@ class WeekChart extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5.0),
         color: Color(0xffededed),
-        height: 160,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

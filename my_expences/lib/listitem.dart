@@ -16,9 +16,7 @@ class ListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 500,
-      child: ListView.builder(
+    return ListView.builder(
         itemBuilder: (context, index) {
           var list = transactionList[index];
           return CartElements(
@@ -30,7 +28,6 @@ class ListViewItem extends StatelessWidget {
           );
         },
         itemCount: transactionList.length,
-      ),
     );
   }
 }
