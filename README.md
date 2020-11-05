@@ -8,7 +8,7 @@ With the help of this application, you can easily predict your daily and weekly 
 
 # Screenshot 2: 
 
-![second](https://github.com/hadiuzzaman524/Weekly-Expense-List/blob/main/Screenshot_1604498850.png)
+![second](https://github.com/hadiuzzaman524/Weekly-Expense-List/blob/main/Screenshot_1604585202.png)
 
 # Screenshot 3: 
 
