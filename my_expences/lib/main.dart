@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:my_expences/homepage.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  /*
+  Handle landscape and portrait mode
+   */
+  //In update flutter must declare this line
+  
+/*  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+  ]); */
+
   runApp(MyApp());
 }
 
@@ -18,8 +30,4 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
     );
   }
-}
-
-class Hello{
-  
 }
